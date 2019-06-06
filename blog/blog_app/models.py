@@ -31,7 +31,7 @@ class Postagem(models.Model):
     autor = models.ForeignKey(Autor, on_delete=models.SET_NULL, null=True)
     titulo = models.CharField(max_length=100, help_text='Escreva o título da postagem')    
     datahora = models.DateTimeField(auto_now_add=True)
-    conteudo = models.CharField(max_length=1000, help_text='Escreva sua postagem')
+    conteudo = models.TextField(max_length=1000, help_text='Escreva sua postagem')
     
     # Metadata
     class Meta: 
@@ -51,7 +51,7 @@ class Comentario(models.Model):
     post = models.ForeignKey(Postagem, on_delete=models.CASCADE)
     autor = models.ForeignKey(Autor, on_delete=models.SET_NULL, null=True)
     datahora = models.DateTimeField(auto_now_add=True)
-    conteudo = models.CharField(max_length=1000, help_text='Escreva seu comentario')
+    conteudo = models.TextField(max_length=1000, help_text='Escreva seu comentario')
     
     # Metadata
     class Meta: 
