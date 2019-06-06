@@ -1,51 +1,38 @@
 from django.db import models
+from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Autor(models.Model):
 
     # Fields
-    my_field_name = models.CharField(max_length=20, help_text='Enter field documentation')
+    usuario = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    bio = models.TextField(max_length=500, help_text="Insira sua biografia aqui.")
     
-
     # Metadata
-    class Meta: 
-        ordering = ['-my_field_name']
+    class Meta:
+        ordering = ["usuario"]
 
-    # Methods
     def get_absolute_url(self):
-        return reverse('model-detail-view', args=[str(self.id)])
-    
+        """
+        Return the url to for a blog-author
+        """
+        return reverse('blogs-by-author', args=[str(self.id)])
+
     def __str__(self):
-        return self.my_field_name
+        """
+        String for representing the Model object.
+        """
+        return self.usuario.username
+
 
 class Postagem(models.Model):
 
     # Fields
     autor = models.ForeignKey(Autor, on_delete=models.SET_NULL, null=True)
+    titulo = models.CharField(max_length=100, help_text='Escreva o título da postagem')    
     datahora = models.DateTimeField(auto_now_add=True)
-    conteudo = models.CharField(max_length=500, help_text='Escreva sua postagem')
+    conteudo = models.CharField(max_length=1000, help_text='Escreva sua postagem')
     
-
-    # Metadata
-    class Meta: 
-        ordering = ['-my_field_name']
-
-    # Methods
-    def get_absolute_url(self):
-        return reverse('model-detail-view', args=[str(self.id)])
-    
-    def __str__(self):
-        return self.conteudo
-
-
-class Comentario(models.Model):
-
-    # Fields
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    autor = models.ForeignKey(Autor, on_delete=models.SET_NULL, null=True)
-    datahora = models.DateTimeField(auto_now_add=True)
-    conteudo = models.CharField(max_length=500, help_text='Escreva seu comentario')
-    
-
     # Metadata
     class Meta: 
         ordering = ['-datahora']
@@ -55,5 +42,25 @@ class Comentario(models.Model):
         return reverse('model-detail-view', args=[str(self.id)])
     
     def __str__(self):
-        return self.couteudo
+        return self.titulo
+
+
+class Comentario(models.Model):
+
+    # Fields
+    post = models.ForeignKey(Postagem, on_delete=models.CASCADE)
+    autor = models.ForeignKey(Autor, on_delete=models.SET_NULL, null=True)
+    datahora = models.DateTimeField(auto_now_add=True)
+    conteudo = models.CharField(max_length=1000, help_text='Escreva seu comentario')
+    
+    # Metadata
+    class Meta: 
+        ordering = ['datahora']
+
+    # Methods
+    def get_absolute_url(self):
+        return reverse('model-detail-view', args=[str(self.id)])
+    
+    def __str__(self):
+        return self.conteudo[:50]
 
