@@ -62,5 +62,5 @@ class Comentario(models.Model):
         return reverse('model-detail-view', args=[str(self.id)])
     
     def __str__(self):
-        return self.conteudo[:50]
+        return self.conteudo if len(self.conteudo) <= 75 else self.conteudo[:72]  + '...'
 
