@@ -2,20 +2,20 @@
 
 {% block content %}
 
-<h1>{{ postagem.titulo }}</h1>
-<p><strong>Datahora</strong> {{ postagem.datahora }}</p>
-<p><strong>Conteudo:</strong></p>
-<p>{{ postagem.conteudo }}</p>
+<h1>Autor: {{autor.usuario.first_name}} {{autor.usuario.last_name}}</h1>
 
-<h4>Comentarios</h4>
+<h2>Biografia</h2>
+  <p>{{ autor.bio }}</p>
 
-{% for comentario in postagem.comentario_set.all %}
-<hr>
-<p>{{comentario.autor}} ({{comentario.datahora}}) - {{comentario.conteudo}}</p>
-{% endfor %}
-<hr>
-
-
+<h2>Postagens</h2>
+<ul>
+  {% for post in autor.postagem_set.all %}
+  <li>
+    <a href="{{ post.get_absolute_url }}">{{ post.titulo }}</a> 
+    em {{post.datahora.date}}</p>
+  </li>
+  {% endfor %}
+</ul>
 
 </div>
 {% endblock %}

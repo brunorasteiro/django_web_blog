@@ -23,16 +23,18 @@ def index(request):
 
 from django.views import generic
 
-class PostagensView(generic.ListView):
+class PostagensListView(generic.ListView):
     model = Postagem
-    context_object_name = 'postagem_list'   # your own name for the list as a template variable
-    template_name = 'blog_app/postagem_list.html'  # Specify your own template name/location
-    # queryset = Postagem.objects.all()[:5] # Get 5 books containing the title war
-    # TODO: show 5 per page
+    paginate_by = 5
 
+    # context_object_name = 'postagem_list'   # your own name for the list as a template variable
+    # template_name = 'blog_app/postagem_list.html'  # Specify your own template name/location
+    
 class PostDetailView(generic.DetailView):
     model = Postagem
-    # 
 
+class AutorListView(generic.ListView):
+    model = Autor
 
-    
+class AutorDetailView(generic.DetailView):
+    model = Autor

@@ -1,16 +1,18 @@
 {% extends "base_generic.html" %}
-<!-- {{ post.get_absolute_url }} -->
+
 {% block content %}
-  <h1>Book List</h1>
+  <h1>Todas as postagens</h1>
   {% if postagem_list %}
   <ul>
     {% for post in postagem_list %}
       <li>
-        <a href="{{ post.get_absolute_url }}">{{ post.titulo }}</a> ({{post.autor}})
+        <a href="{{ post.get_absolute_url }}">{{ post.titulo }}</a> 
+        por <a href="{{post.autor.get_absolute_url }}">{{post.autor.usuario.first_name}} {{post.autor.usuario.last_name}}</a>
+        em {{post.datahora.date}}
       </li>
     {% endfor %}
   </ul>
   {% else %}
-    <p>There are no books in the library.</p>
+    <p>Não há postagens.</p>
   {% endif %}       
 {% endblock %}
