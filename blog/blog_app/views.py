@@ -25,3 +25,14 @@ from django.views import generic
 
 class PostagensView(generic.ListView):
     model = Postagem
+    context_object_name = 'postagem_list'   # your own name for the list as a template variable
+    template_name = 'blog_app/postagem_list.html'  # Specify your own template name/location
+    # queryset = Postagem.objects.all()[:5] # Get 5 books containing the title war
+    # TODO: show 5 per page
+
+class PostDetailView(generic.DetailView):
+    model = Postagem
+    # 
+
+
+    

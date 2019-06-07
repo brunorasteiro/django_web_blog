@@ -39,7 +39,7 @@ class Postagem(models.Model):
 
     # Methods
     def get_absolute_url(self):
-        return reverse('postagem-detail', args=[str(self.id)])
+        return reverse('post-detail', args=[str(self.id)])
     
     def __str__(self):
         return self.titulo

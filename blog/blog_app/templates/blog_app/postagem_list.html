@@ -1,12 +1,12 @@
 {% extends "base_generic.html" %}
-
+<!-- {{ post.get_absolute_url }} -->
 {% block content %}
   <h1>Book List</h1>
   {% if postagem_list %}
   <ul>
     {% for post in postagem_list %}
       <li>
-        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a> ({{post.author}})
+        <a href="{{ post.get_absolute_url }}">{{ post.titulo }}</a> ({{post.autor}})
       </li>
     {% endfor %}
   </ul>
