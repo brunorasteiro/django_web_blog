@@ -11,10 +11,14 @@ def index(request):
     num_posts = Postagem.objects.all().count()
     num_coments = Comentario.objects.all().count()
     
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
+    
     context = {
         'num_autores': num_autores,
         'num_posts': num_posts,
         'num_coments': num_coments,
+        'num_visits': num_visits,
     }
 
     # Render the HTML template index.html with the data in the context variable
