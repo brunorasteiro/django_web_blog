@@ -16,7 +16,7 @@ class Autor(models.Model):
         """
         Return the url to for a blog-author
         """
-        return reverse('blogs-by-author', args=[str(self.id)])
+        return reverse('autor-detail', args=[str(self.id)])
 
     def __str__(self):
         """
@@ -39,7 +39,7 @@ class Postagem(models.Model):
 
     # Methods
     def get_absolute_url(self):
-        return reverse('model-detail-view', args=[str(self.id)])
+        return reverse('postagem-detail', args=[str(self.id)])
     
     def __str__(self):
         return self.titulo
@@ -58,8 +58,8 @@ class Comentario(models.Model):
         ordering = ['datahora']
 
     # Methods
-    def get_absolute_url(self):
-        return reverse('model-detail-view', args=[str(self.id)])
+    # def get_absolute_url(self):
+    #     return reverse('comentario-detail', args=[str(self.id)])
     
     def __str__(self):
         return self.conteudo if len(self.conteudo) <= 75 else self.conteudo[:72]  + '...'

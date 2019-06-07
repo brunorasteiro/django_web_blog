@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Local Library Home</h1>
+<p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
+<h2>Dynamic content</h2>
+<p>The library has the following record counts:</p>
+<ul>
+    <li><strong>Autores:</strong> {{ num_autores }}</li>
+    <li><strong>Postagens:</strong> {{ num_posts }}</li>
+    <li><strong>Comentarios:</strong> {{ num_coments }}</li>
+    
+</ul>
+{% endblock %}
