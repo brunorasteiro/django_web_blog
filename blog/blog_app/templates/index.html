@@ -1,16 +1,37 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Local Library Home</h1>
-<p>Welcome to LocalLibrary, a website developed by <em>Mozilla Developer Network</em>!</p>
-<h2>Dynamic content</h2>
-<p>The library has the following record counts:</p>
+<h1>Blog de curiosidades</h1>
+<p>Seja bem vindo ao blog de curiosidades, um blog desenvolvido como trabalho da disciplina de Desenvolvimento Web.</p>
+
+<h2>Estatísticas sobre o blog</h2>
 <ul>
     <li><strong>Autores:</strong> {{ num_autores }}</li>
     <li><strong>Postagens:</strong> {{ num_posts }}</li>
-    <li><strong>Comentarios:</strong> {{ num_coments }}</li>
-    
+    <li><strong>Comentários:</strong> {{ num_coments }}</li>
 </ul>
-<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+
+<p>O acesso ao blog pode ser feito através de dois usuários</p>
+<table>
+    <thead>
+        <tr>
+            <th scope="col">Nome de usuário</th>
+            <th scope="col">Senha</th>
+            <th scope="col">Tipo de usuário</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>graca</td>
+            <td>web123123</td>
+            <td>Comum</td>
+        </tr>
+        <tr>
+            <td>admin</td>
+            <td>admin</td>
+            <td>Administrador</td>
+        </tr>
+    </tbody>
+</table>
 
 {% endblock %}

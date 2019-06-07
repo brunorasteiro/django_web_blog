@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <p>Escreva seu comentário para: <a href="{{postagem.get_absolute_url}}">{{postagem.titulo}}</a></p>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" value="Enviar">
+  </form>
+{% endblock %}
